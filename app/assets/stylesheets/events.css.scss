@@ -1,0 +1,34 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "foundation/components/type";
+
+
+.datetime-selector {
+  a {
+    padding-right: 1rem;
+  }
+}
+
+tr.closed {
+  td {
+    color: $iron;
+  }
+}
+
+
+table {
+  tr.due:nth-of-type(even) {
+    background-color: rgba(226, 226, 148, 0.35);
+  }
+  tr.due:nth-of-type(odd) {
+    background-color: rgba(226, 226, 148, 0.15);
+  }
+  tr.overdue:nth-of-type(even) {
+    background-color: rgba(226, 135, 135, 0.35);
+  }
+  tr.overdue:nth-of-type(odd) {
+    background-color: rgba(226, 135, 135, 0.15);
+  }
+}

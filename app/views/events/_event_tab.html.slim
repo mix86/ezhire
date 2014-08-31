@@ -1,0 +1,20 @@
+.row
+  .small-4.columns
+    label
+      | Когда
+      .datetime-selector
+        .row
+          .small-8.column
+            input.date-input type=:text name='event[planned_at_date]' placeholder='дд.мм.гггг' value=d(event.planned_at)
+          .small-4.column
+            input.time-input type=:text name='event[planned_at_time]' placeholder='ЧЧ:ММ' value=t(event.planned_at)
+        .row
+          .small-12.column
+            a href='#' data-date=d(now) data-time=t(now) Сейчас
+            a href='#' data-date=d(now + 1.hour) data-time=t(now + 1.hour) Через час
+            a href='#' data-date=d(now + 1.day) data-time=t(now + 1.day) Завтра
+  .small-8.columns
+    label
+      | Коммент
+      textarea placeholder="так чтобы потом вспомнить о чем речь" name="event[note]" rows=10
+        = event.note

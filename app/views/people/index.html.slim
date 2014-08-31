@@ -1,0 +1,36 @@
+- content_for :project_tab do
+  .row
+    = form_for :person, url: search_project_people_path, method: :post
+      .small-12.column
+        .row.collapse
+          .small-2.column
+            input.prefix type="text" placeholder="Город" name="city" value=(params[:city].nil? ? "москва" : params[:city])
+          .small-8.column
+            input type="text" placeholder="Кейворды" name="query" value=params[:query] aria-describedby="queryHelpText"
+            p id="queryHelpText" через зaпятую
+          .small-2.column
+            input.postfix type="submit" value="Искать!"
+  - if persons.present?
+    .row
+      table
+        tbody
+          - persons.each_with_index do |person, i|
+            = render 'person', person: person
+            tr
+              td.userpic
+                a.th data-reveal-id="showPerson-#{person.id}" href="#"
+                  img.userpic src=person.moikrug[:userpic]
+              td
+                a data-reveal-id="showPerson-#{person.id}" href="#"
+                  = person.name
+  - elsif params[:query].present?
+    .row
+      .small-12.column
+        h1.text-center Никого нет!
+  .row
+    .small-12.column
+      = link_to clear_project_people_path, method: :delete do
+        small = "Очистить песочницу"
+
+= render template: "projects/show"
+= render 'events/create_event'

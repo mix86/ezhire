@@ -1,0 +1,33 @@
+.row
+  .small-6.column.small-centered
+    h2 Регистрация
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      / # = devise_error_messages!
+      .row
+        .large-12.columns
+          label
+            | Email
+            = f.email_field :email, autofocus: true, class: error_class(resource, :email)
+            = errors resource, :email
+      .row
+        .large-12.columns
+          = f.label :password
+            | Пароль
+            = f.password_field :password,
+                               autocomplete: "off",
+                               placeholder: "#{@minimum_password_length} символов минимум",
+                               class: error_class(resource, :password)
+            = errors resource, :password
+      .row
+        .large-12.columns
+          = f.label :password_confirmation
+            | Подтверждение
+            = f.password_field :password_confirmation,
+                               autocomplete: "off",
+                               class: error_class(resource, :password_confirmation)
+            = errors resource, :password_confirmation
+      .row
+        .large-6.columns
+          = render "devise/shared/links"
+        .large-6.columns
+          input.button.right type=:submit value="Войти"

@@ -1,0 +1,28 @@
+// Place all the styles related to the people controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "foundation/components/type";
+
+#queryHelpText {
+  margin-top: -1rem;
+  padding-left: 0.5rem;
+  color: $small-font-color;
+  font-size:  $small-font-size;
+}
+
+.person:nth-child(even) {
+  background-color: $snow;
+}
+
+.userpic {
+  width: 100px;
+
+  img {
+    width: 70px;
+    height: 70px;
+  }
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+docker stop ez-ngx0
+docker stop ez-app0
+docker stop ez-mongo0
+
+exit 0

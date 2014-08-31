@@ -1,0 +1,16 @@
+// Place all the styles related to the Playground controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "foundation/components/type";
+
+.search-row {
+  padding-top: 30px;
+}
+
+#queryHelpText {
+  margin-top: -1rem;
+  padding-left: 0.5rem;
+  color: $small-font-color;
+  font-size:  $small-font-size;
+}

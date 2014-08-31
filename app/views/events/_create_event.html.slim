@@ -1,0 +1,32 @@
+#createEvent.reveal-modal data-reveal=''
+  h2 Планируем новое событие
+  = form_for :event, url: events_path do |f|
+    input#parentEvent name=:parent_event type=:hidden
+    .row
+      .small-4.columns
+        label
+          | Что это будет
+          = f.select :kind, Event::Kind.to_a
+        label
+          | С кем
+          = f.collection_select :person, persons, :id, :name, include_blank: true
+        label
+          | Когда
+          .datetime-selector
+            .row
+              .small-8.column
+                input.date-input type=:text name='event[planned_at_date]' placeholder='дд.мм.гггг'
+              .small-4.column
+                input.time-input type=:text name='event[planned_at_time]' placeholder='ЧЧ:ММ'
+            .row
+              .small-12.column
+                a href='#' data-date=d(now) data-time=t(now) Сейчас
+                a href='#' data-date=d(now + 1.hour) data-time=t(now + 1.hour) Через час
+                a href='#' data-date=d(now + 1.day) data-time=t(now + 1.day) Завтра
+      .small-8.columns
+        label
+          | Коммент
+          textarea placeholder="так чтобы потом вспомнить о чем речь" name="event[note]" rows=10
+      .small-12.columns
+        input.small.button.right type="submit" value="Сохранить"
+  a.close-reveal-modal ×

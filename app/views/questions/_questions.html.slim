@@ -1,0 +1,21 @@
+.question-answer
+  .rows
+    - if collection.empty?
+      .row
+        .small-12.columns
+          label
+            input type=:text name="#{key}[][question]"
+            textarea name="#{key}[][answer]"
+
+    - collection.each do |question|
+      .row
+        .small-12.columns
+          label
+            span.question = question.question
+            input type=:hidden name="#{key}[][question]" value=question.question
+            textarea name="#{key}[][answer]"
+              = question.answer
+  .row
+    .small-12.columns
+      a.small.button data-behaviour="new-question" href="#" +
+

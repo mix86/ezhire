@@ -1,0 +1,35 @@
+.row
+  .small-12.column
+    dl.sub-nav
+      dd.active
+        a.left data-reveal-id="createEvent" href="#" = icon :plus
+      dt
+        | |
+      dd
+        a href='#' = icon :phone
+      dd
+        a href='#' = icon :envelope
+.row
+  .small-12.column
+    table
+      tboby
+        - events.each do |event|
+          tr class=event_classes(event)
+            td width=30 = icon event_icon(event)
+            td
+              = event.person.name
+              br
+              small
+                = event.note
+            td width=70
+              .right
+                = event.planned_at.strftime '%H:%M'
+                br
+                small
+                  = event.planned_at.strftime '%d.%m.%Y'
+            td width=40
+              a data-reveal-id="editEvent-#{event.id}" href="#" = icon :pencil
+
+              = render 'edit_event', event: event
+
+= render 'create_event'

@@ -1,0 +1,27 @@
+.row
+  .small-6.column.small-centered
+    h2 Вход
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .row
+        .large-12.columns
+          = f.label :email
+            | Email
+            = f.email_field :email, autofocus: true, class: error_class(resource, :email)
+            = errors resource, :email
+      .row
+        .large-12.columns
+          = f.label :password, class: error_class(resource, :password)
+            | Пароль
+            = f.password_field :password, autocomplete: "off"
+            = errors resource, :password
+      - if devise_mapping.rememberable?
+        .row
+          .large-12.columns
+            = f.check_box :remember_me
+            = f.label :remember_me
+              |  Запомнить
+        .row
+          .large-6.columns
+            = render "devise/shared/links"
+          .large-6.columns
+            input.button.right type=:submit value="Войти"

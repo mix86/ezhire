@@ -1,0 +1,51 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    title= content_for?(:title) ? yield(:title) : "foundation-rails"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+  body
+    nav.top-bar data-topbar="" role="navigation"
+      ul.title-area
+        li.name
+          h1
+            a href="/"  ezHire
+      section.top-bar-section
+        - if current_user.nil?
+          ul.right
+            li
+              a href=new_user_session_path Вход
+            li.active
+              a href=new_user_registration_path Стать своим
+        -else
+          ul
+            li
+              a href=events_path Events
+          ul.right
+            li.has-dropdown
+              a href="#" = current_user.email
+              ul.dropdown
+                li
+                  a href=settings_path  Настройки
+                li
+                  = link_to destroy_user_session_path, method: :delete do
+                    | Выход
+    .row
+      .small-10.small-centered.column
+        -if notice
+          .alert-box.warning data-alert=""
+            = notice
+            a.close href="#"  &times;
+
+        -if alert
+          .alert-box.alert data-alert=""
+            = alert
+            a.close href="#"  &times;
+    br
+    .row
+      .small-12.column
+        = content_for?(:content) ? yield(:content) : yield
+        = javascript_include_tag "application"
