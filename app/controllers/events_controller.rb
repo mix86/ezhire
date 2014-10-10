@@ -52,19 +52,19 @@ class EventsController < ApplicationController
   end
 
   def today_events
-    @today_events ||= events_collection.today.order_by(closed_at: 1, planned_at: 0)
+    @today_events ||= events_collection.today.order_by(closed_at: 1, planned_at: -1)
   end
 
   def overdue_events
-    @overdue_events ||= events_collection.overdue.order_by(planned_at: 0)
+    @overdue_events ||= events_collection.overdue.order_by(planned_at: -1)
   end
 
   def next_events
-    @next_events ||= events_collection.next.order_by(planned_at: 0)
+    @next_events ||= events_collection.next.order_by(planned_at: -1)
   end
 
   def someday_events
-    @someday_events ||= events_collection.someday.order_by(planned_at: 0)
+    @someday_events ||= events_collection.someday.order_by(planned_at: -1)
   end
 
   def events_collection
