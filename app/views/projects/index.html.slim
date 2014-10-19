@@ -13,22 +13,8 @@
               = icon :trash
 
 .row
-  .small-12.column
-    a data-reveal-id="myModal" href="#"  Click Me For A Modal
-    #myModal.reveal-modal data-reveal=""
-      h2 Создаем новый поект
-      p.lead Он будет блестяще успешным!
-      = form_for :project do |f|
-        .row
-          .large-12.columns
-            label
-              | Его название
-              input placeholder="должно быть клёвым" type="text" name="name"
-          .large-12.columns
-            label
-              | И описание
-              textarea placeholder="многамногамногабукафф" name="note"
+  a.left data-reveal-id="create-project" href="#"
+    = icon :plus
+    |  Новая вакансия
 
-          .small-12.columns
-            input.small.button.right type="submit" value="Сохранить"
-      a.close-reveal-modal ×
+= render 'projects/create_project'

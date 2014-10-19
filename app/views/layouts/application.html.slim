@@ -23,7 +23,9 @@ html lang="en"
         -else
           ul
             li
-              a href=events_path Events
+              a href=events_path CRM
+            li
+              a href=projects_path Вакансии
           ul.right
             li.has-dropdown
               a href="#" = current_user.email
@@ -47,5 +49,5 @@ html lang="en"
     br
     .row
       .small-12.column
-        = content_for?(:content) ? yield(:content) : yield
+        = yield
         = javascript_include_tag "application"

@@ -1,8 +1,6 @@
-- content_for :project_tab do
+- content_for :active_tab do
   = form_for :project, url: project_project_questionnaire_path, method: :put
     .row
       .small-12.column
         = render 'questions/questions', collection: project.questionnaire, key: 'project[questionnaire]'
         input.small.button.right type="submit" value="Сохранить"
-
-= render template: "projects/show"

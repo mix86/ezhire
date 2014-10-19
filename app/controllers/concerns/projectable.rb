@@ -2,9 +2,11 @@ module Projectable
   extend ActiveSupport::Concern
 
   included do
-    layout 'dashboard'
+    layout 'project'
 
     helper_method :project, :projects
+
+    helper ProjectsHelper
   end
 
   def projects

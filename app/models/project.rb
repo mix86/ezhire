@@ -9,6 +9,7 @@ class Project
   belongs_to :owner, class_name: 'User', inverse_of: :projects
 
   embeds_many :questionnaire, class_name: 'Question', as: :askable
+  embeds_many :templates, class_name: 'Template', as: :templatable
 
   scope :of, -> (user) { where(owner: user) }
 end

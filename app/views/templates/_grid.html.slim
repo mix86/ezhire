@@ -1,0 +1,17 @@
+table
+  thead
+    tr
+      th width=240 Название
+      th Текст
+      th width=80 Личное?
+      th width=40
+  tbody
+    - templates.each do |template|
+      tr
+        td
+          a href=template_path(id: template) = template.name
+        td = template.body
+        td = icon :check if template.private?
+        td.small-text-center
+          = link_to template_path(id: template), method: :delete do
+            = icon :trash

@@ -1,21 +1,4 @@
-.row
-  .small-12.column
-    h1
-      = " #{project.name}"
-    p = project.note
-    dl.sub-nav
-      dd class="#{active_tab == :project_questionnaires ? 'active' : ''}"
-        = link_to project_project_questionnaire_path(project) do
-          = ' Анкета'
-      dd class="#{active_tab == :project_interviews ? 'active' : ''}"
-        = link_to project_project_interview_path(project) do
-          = "План интервью"
-      dd class="#{active_tab == :people ? 'active' : ''}"
-        = link_to project_people_path(project) do
-          = ' Активный поиск'
-      dd
-        a href="#"  Пассивный поиск
-    - if content_for?(:project_tab)
-      = yield(:project_tab)
-    - else
-      | что тут?
+- content_for :active_tab do
+  .row
+    .small-12.column
+      p = project.note

@@ -13,4 +13,16 @@ module ApplicationHelper
     end
     raw html.join("\n")
   end
+
+  def now
+    Time.now
+  end
+
+  def d dt
+    dt.strftime '%d.%m.%Y'
+  end
+
+  def t dt
+    dt.strftime '%H:%M'
+  end
 end

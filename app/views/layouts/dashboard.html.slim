@@ -1,50 +1,32 @@
-- content_for :content do
-  .row
-    .small-3.column
-      ul.side-nav
-        li.heading Движуха
-        li.sidebar-item
-          = link_to events_path do
-            = icon :star
-            | Сегодня
-        li.sidebar-item
-          = link_to "#{events_path}?focus=next" do
-            = icon :bars
-            | Завтра
-        li.sidebar-item
-          = link_to "#{events_path}?focus=someday" do
-            = icon :calendar
-            | Потом
-        li.divider
-        li.heading Вакансии
-        - projects.each do |project|
-          li.sidebar-item
-            = link_to project_path(project.id) do
-              = icon 'male'
-              = project.name
-        li.sidebar-item
-          a.left data-reveal-id="createProject" href="#"
-            = icon :plus
-            | Новая вакансия
-
-      #createProject.reveal-modal data-reveal=""
-        h2 Создаем новую вакансию
-        p.lead Все получится!
-        = form_for :project, url: projects_path do |f|
-          .row
-            .large-12.columns
-              label
-                | Её название
-                input placeholder="оно должно быть клёвым" type="text" name="name"
-            .large-12.columns
-              label
-                | И описание
-                textarea placeholder="чем больше букв тем круче!" name="note"
-            .small-12.columns
-              input.small.button.right type="submit" value="Сохранить"
-        a.close-reveal-modal ×
-
-    .small-9.column
-      = yield
-
 = render template: "layouts/application"
+.row
+  .small-3.column
+    ul.side-nav
+      li.heading Движуха
+      li.sidebar-item
+        = link_to events_path do
+          = icon :star
+          | Сегодня
+      li.sidebar-item
+        = link_to "#{events_path}?focus=next" do
+          = icon :bars
+          | Завтра
+      li.sidebar-item
+        = link_to "#{events_path}?focus=someday" do
+          = icon :calendar
+          | Потом
+      li.divider
+      li.heading Вакансии
+      - projects.each do |project|
+        li.sidebar-item
+          = link_to project_path(project.id) do
+            = icon 'male'
+            = project.name
+      li.sidebar-item
+        a.left data-reveal-id="create-project" href="#"
+          = icon :plus
+          | Новая вакансия
+    = render 'projects/create_project'
+
+  .small-9.column
+    = yield(:payload)

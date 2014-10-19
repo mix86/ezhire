@@ -12,18 +12,6 @@ module EventsHelper
     end
   end
 
-  def d dt
-    dt.strftime '%d.%m.%Y'
-  end
-
-  def t dt
-    dt.strftime '%H:%M'
-  end
-
-  def now
-    Time.now
-  end
-
   def event_classes event
     case
     when event.closed?
