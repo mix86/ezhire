@@ -1,0 +1,27 @@
+= content_for :payload
+  .row
+    .small-12.column
+      h2
+        = icon event_icon(event)
+        = " #{event.person.name}"
+      = form_for event do |f|
+        dl.tabs data-tab=""
+          dd.active
+            a href="#panel-event"  Событие
+          dd
+            a href="#panel-interview"  Интервью
+        .tabs-content
+          #panel-event.content.active
+            = render 'event_tab', event: event
+          #panel-interview.content
+            = render 'interview_tab', event: event
+        .row
+          .small-12.columns.right
+            input.small.button.right type="submit" value="Сохранить"
+            = link_to event_path(event), method: :delete, class: [:small, :button, :secondary, :left] do
+              = icon :trash
+            a.small.button.secondary.left data-reveal-id="create-event" data={ person_id: event.person.id,
+                                                                              parent_event: event.id } href="#"
+              | Готово!
+
+  = render 'create_event'

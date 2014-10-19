@@ -7,8 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    create_project!
-    redirect
+    redirect_to project_path(create_project!)
   end
 
   def show
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def redirect
-    redirect_to '/'
+    redirect_to projects_path
   end
 
   def project_params
