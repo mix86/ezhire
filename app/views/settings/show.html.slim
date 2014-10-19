@@ -3,7 +3,6 @@
     h1 Настройки
 .row
   .small-12.column
-    = form_for :settings, url: settings_path, method: :put
       dl.sub-nav
         dd class=active(:questionnaire)
           a href="#{settings_path}?questionnaire"  Вопросы анкеты
@@ -12,8 +11,10 @@
         dd
           a href=settings_settings_templates_path  Шаблоны
       .tabs-content
-        #panel-questionnaire.content class=active?(:questionnaire)
-          = render 'questionnaire'
-        #panel-interview.content class=active?(:interview)
-          = render 'interview'
+        #panel-questionnaire.content class=active(:questionnaire)
+          = form_for :settings, url: settings_path, method: :put
+            = render 'questionnaire'
+        #panel-interview.content class=active(:interview)
+          = form_for :settings, url: settings_path, method: :put
+            = render 'interview'
 

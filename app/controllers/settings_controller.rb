@@ -6,8 +6,8 @@ class SettingsController < ApplicationController
   end
 
   def update
-    user.settings.questionnaire = questionnaire
-    user.settings.interview = interview
+    user.settings.questionnaire = questionnaire if params.has_key?(:questionnaire)
+    user.settings.interview = interview if params.has_key?(:interview)
     user.save!
     render action: :show
   end
