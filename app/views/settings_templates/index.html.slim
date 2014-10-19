@@ -1,0 +1,57 @@
+.row
+  .small-12.column
+    h1 Настройки
+.row
+  .small-12.column
+      dl.sub-nav
+        dd
+          a href="#{settings_path}?questionnaire"  Вопросы анкеты
+        dd
+          a href="#{settings_path}?interview"  План интервью
+        dd.active
+          a href=settings_settings_templates_path  Шаблоны
+      .row
+        .small-12.column
+          table
+            thead
+              tr
+                th width=240 Название
+                th Текст
+                th width=80 Личное?
+                th width=40
+            tbody
+              - settings.templates.each do |template|
+                tr
+                  td
+                    a href=settings_settings_template_path(template) = template.name
+                  td = template.body
+                  td = icon :check if template.private?
+                  td.small-text-center
+                    = link_to settings_settings_template_path(template), method: :delete do
+                      = icon :trash
+      .row
+        .small-12.column
+          a.tiny.button data-behaviour="create-template" href="#"
+            = icon :plus
+
+
+      #create-template.reveal-modal data-reveal=""
+        h2 Шаблон
+        = form_for :template, url: settings_settings_templates_path, method: :post do |f|
+          .row
+            .small-10.columns
+              label
+                | Название
+                = f.text_field :name, placeholder: 'желательно понятное'
+            .small-2.columns
+              br
+              = f.check_box :private
+              label for="template_private"  Личное
+          .row
+            .small-12.columns
+              label
+                | Текст
+                = f.text_area :body, placeholder: "чтоб все заколдобились!", rows: 15
+            .small-12.columns
+              input.small.button.right type="submit" value="Сохранить"
+        a.close-reveal-modal ×

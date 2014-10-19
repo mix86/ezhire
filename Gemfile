@@ -45,12 +45,13 @@ gem 'nokogiri'
 gem 'sanitize'
 
 gem "mongoid", "~> 4.0.0"
+gem 'moped', '~> 2.0.1'
 gem 'bson_ext'
 
 gem 'slim'
 gem 'foundation-rails'
 gem 'font-awesome-sass', '~> 4.2.0'
-gem 'devise'
+gem 'devise', '~> 3.4.0'
 gem "enumerate_it"
 
 group :development do

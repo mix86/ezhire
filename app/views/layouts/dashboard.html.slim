@@ -4,15 +4,15 @@
       ul.side-nav
         li.heading Движуха
         li.sidebar-item
-          = link_to events_path, method: :get do
+          = link_to events_path do
             = icon :star
             | Сегодня
         li.sidebar-item
-          = link_to "#{events_path}?focus=next", method: :get do
+          = link_to "#{events_path}?focus=next" do
             = icon :bars
             | Завтра
         li.sidebar-item
-          = link_to "#{events_path}?focus=someday", method: :get do
+          = link_to "#{events_path}?focus=someday" do
             = icon :calendar
             | Потом
         li.divider

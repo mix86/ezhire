@@ -1,0 +1,20 @@
+.row
+  .small-12.column
+    h2 Шаблон
+    = form_for template, url: settings_settings_template_path(template), method: :patch do |f|
+      .row
+        .small-10.columns
+          label
+            | Название
+            = f.text_field :name, placeholder: 'желательно понятное'
+        .small-2.columns
+          br
+          = f.check_box :private
+          label for="template_private"  Личное
+      .row
+        .small-12.columns
+          label
+            | Текст
+            = f.text_area :body, placeholder: "чтоб все заколдобились!", rows: 15
+        .small-12.columns
+          input.small.button.right type="submit" value="Сохранить"

@@ -3,7 +3,6 @@ class SettingsController < ApplicationController
   helper_method :settings
 
   def show
-
   end
 
   def update

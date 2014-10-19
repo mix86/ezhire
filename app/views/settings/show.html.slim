@@ -1,40 +1,19 @@
 .row
   .small-12.column
     h1 Настройки
-= form_for :settings, url: settings_path, method: :put
-  .row
-    .small-12.column
-      h2 Вопросы анкеты
-      .question-answer
-        .rows
-          - if settings.questionnaire.empty?
-            .row
-              .small-12.columns
-                input type=:text name="questionnaire[]"
-          - settings.questionnaire.each do |question|
-            .row
-              .small-12.columns
-                input type=:text value=question name="questionnaire[]"
-        .row
-          .small-12.columns
-            a.small.button data-behaviour="new-question" href="#" +
+.row
+  .small-12.column
+    = form_for :settings, url: settings_path, method: :put
+      dl.sub-nav
+        dd class=active?(:questionnaire)
+          a href="#{settings_path}?questionnaire"  Вопросы анкеты
+        dd class=active?(:interview)
+          a href="#{settings_path}?interview"  План интервью
+        dd
+          a href=settings_settings_templates_path  Шаблоны
+      .tabs-content
+        #panel-questionnaire.content class=active?(:questionnaire)
+          = render 'questionnaire'
+        #panel-interview.content class=active?(:interview)
+          = render 'interview'
 
-  .row
-    .small-12.column
-      h2 План интервью
-      .question-answer
-        .rows
-          - if settings.interview.empty?
-            .row
-              .small-12.columns
-                input type=:text name="interview[]"
-          - settings.interview.each do |question|
-            .row
-              .small-12.columns
-                input type=:text value=question name="interview[]"
-        .row
-          .small-12.columns
-            a.small.button data-behaviour="new-question" href="#" +
-  .row
-    .small-12.column
-      input.small.button.right type="submit" value="Сохранить"

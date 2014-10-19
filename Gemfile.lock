@@ -64,10 +64,11 @@ GEM
     crass (0.2.1)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
-    devise (3.3.0)
+    devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
+      responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
@@ -115,13 +116,13 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.4.1)
+    minitest (5.4.2)
     mongoid (4.0.0)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-    moped (2.0.0)
+    moped (2.0.1)
       bson (~> 2.2)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
@@ -171,6 +172,8 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    responders (1.1.1)
+      railties (>= 3.2, < 4.2)
     retriable (1.4.1)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
@@ -253,7 +256,7 @@ DEPENDENCIES
   bson_ext
   capistrano (~> 3.2.0)
   coffee-rails (~> 4.0.0)
-  devise
+  devise (~> 3.4.0)
   enumerate_it
   font-awesome-sass (~> 4.2.0)
   foundation-rails
@@ -262,6 +265,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mongoid (~> 4.0.0)
+  moped (~> 2.0.1)
   nokogiri
   pry
   pry-byebug
