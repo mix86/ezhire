@@ -1,0 +1,32 @@
+- content_for :payload do
+  .row
+    .small-12.column
+      h1
+        = " #{project.name}"
+      dl.sub-nav
+        dd class="#{active_tab == :project_questionnaires ? 'active' : ''}"
+          = link_to project_project_questionnaire_path(project) do
+            = ' Анкета'
+        dd class="#{active_tab == :project_interviews ? 'active' : ''}"
+          = link_to project_project_interview_path(project) do
+            = "План интервью"
+        dd class="#{active_tab == :people ? 'active' : ''}"
+          = link_to project_people_path(project) do
+            = ' Активный поиск'
+        dd
+          a href="#"  Пассивный поиск
+        dd class="#{active_tab == :project_templates ? 'active' : ''}"
+          = link_to project_project_templates_path(project) do
+            = ' Шаблоны'
+
+      - if content_for?(:active_tab)
+        = yield(:active_tab)
+      - else
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+= render template: "layouts/dashboard"

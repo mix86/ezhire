@@ -2,26 +2,29 @@ class EventsController < ApplicationController
   include Projectable
 
   layout 'dashboard'
-  helper_method :projects, :events, :persons
+  helper_method :projects, :event, :events, :persons
 
   def index
+  end
+
+  def show
   end
 
   def create
     create_event!
     close_parent!
-    redirect_to events_path
+    redirect_to :index
   end
 
   def update
     update_event!
     update_interview!
-    redirect_to events_path
+    redirect_to :show
   end
 
   def destroy
     event.delete
-    redirect_to events_path
+    redirect_to :index
   end
 
   private
@@ -117,5 +120,13 @@ class EventsController < ApplicationController
   def planned_at
     p = params.require(:event).permit(:planned_at_date, :planned_at_time)
     DateTime.strptime("#{p[:planned_at_date]} #{p[:planned_at_time]}", '%d.%m.%Y %H:%M')
+  end
+
+  def index_url
+    events_path
+  end
+
+  def show_url
+    event_url event
   end
 end

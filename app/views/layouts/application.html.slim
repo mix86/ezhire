@@ -3,7 +3,7 @@ html lang="en"
   head
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
-    title= content_for?(:title) ? yield(:title) : "foundation-rails"
+    title= content_for?(:title) ? yield(:title) : "ezHire"
     = stylesheet_link_tag    "application"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
@@ -23,7 +23,9 @@ html lang="en"
         -else
           ul
             li
-              a href=events_path Events
+              a href=events_path CRM
+            li
+              a href=projects_path Вакансии
           ul.right
             li.has-dropdown
               a href="#" = current_user.email
@@ -47,5 +49,5 @@ html lang="en"
     br
     .row
       .small-12.column
-        = content_for?(:content) ? yield(:content) : yield
+        = yield
         = javascript_include_tag "application"

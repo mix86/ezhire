@@ -1,12 +1,13 @@
 class ProjectsController < ApplicationController
   include Projectable
 
+  layout :layout
+
   def index
   end
 
   def create
-    create_project!
-    redirect
+    redirect_to project_path(create_project!)
   end
 
   def show
@@ -29,7 +30,8 @@ class ProjectsController < ApplicationController
   def create_project!
     Project.create project_params.merge owner: current_user,
                                         interview: default_interview,
-                                        questionnaire: default_questionnaire
+                                        questionnaire: default_questionnaire,
+                                        templates: default_templates
   end
 
   def default_questionnaire
@@ -40,11 +42,24 @@ class ProjectsController < ApplicationController
     settings.interview
   end
 
+  def default_templates
+    settings.templates
+  end
+
   def redirect
-    redirect_to '/'
+    redirect_to projects_path
   end
 
   def project_params
     params.permit(:name, :note)
+  end
+
+  def layout
+    case params[:action]
+    when 'index'
+      'application'
+    else
+      'project'
+    end
   end
 end

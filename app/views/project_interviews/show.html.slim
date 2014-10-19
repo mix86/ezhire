@@ -1,4 +1,4 @@
-- content_for :project_tab do
+- content_for :active_tab do
   = form_for :project, url: project_project_interview_path, method: :put
     .row
       .small-12.column
@@ -15,7 +15,5 @@
                   input type=:text value=question name="project[interview][]" data={index: i}
           .row
             .small-12.columns
-              a.small.button data-behaviour="new-question" href="#" +
+              a.tiny.button data-behaviour="new-question" href="#" +
               input.small.button.right type="submit" value="Сохранить"
-
-= render template: "projects/show"

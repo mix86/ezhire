@@ -1,4 +1,4 @@
-- content_for :project_tab do
+- content_for :active_tab do
   .row
     = form_for :person, url: search_project_people_path, method: :post
       .small-12.column
@@ -32,5 +32,4 @@
       = link_to clear_project_people_path, method: :delete do
         small = "Очистить песочницу"
 
-= render template: "projects/show"
 = render 'events/create_event'

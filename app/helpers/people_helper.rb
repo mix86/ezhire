@@ -3,7 +3,6 @@ module PeopleHelper
     :people
   end
 
-
   def moikrug_name person
     person.moikrug[:nick]
   end

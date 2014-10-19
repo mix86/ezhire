@@ -24,6 +24,7 @@ class User
   field :last_sign_in_ip,    type: String
 
   ## Confirmable
+
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
   # field :confirmation_sent_at, type: Time
@@ -44,4 +45,15 @@ class User
   def self.serialize_into_session(record)
     [record.id.to_s, record.authenticatable_salt]
   end
+
+  # TODO: оставлено про запас, для дальнейшей борьбы с глюками монги и тп...
+  # def self.serialize_from_session(key, salt)
+  #   if key.is_a? String
+  #     record = to_adapter.get(key)
+  #   else
+  #     raise NotImplementedError, key
+  #     record = to_adapter.get(key[0]["$oid"])
+  #   end
+  #   record if record && record.authenticatable_salt == salt
+  # end
 end

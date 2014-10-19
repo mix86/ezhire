@@ -1,0 +1,16 @@
+#create-project.reveal-modal data-reveal=""
+  h2 Создаем новую вакансию
+  p.lead Все получится!
+  = form_for :project, url: projects_path do |f|
+    .row
+      .large-12.columns
+        label
+          | Её название
+          input placeholder="оно должно быть клёвым" type="text" name="name"
+      .large-12.columns
+        label
+          | И описание
+          textarea placeholder="чем больше букв тем круче!" name="note"
+      .small-12.columns
+        input.small.button.right type="submit" value="Сохранить"
+  a.close-reveal-modal ×

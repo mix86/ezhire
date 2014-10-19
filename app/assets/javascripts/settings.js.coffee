@@ -1,5 +1,5 @@
 $ ->
-  $('a[data-behaviour=new-question').click ->
+  $('a[data-behaviour=new-question]').click ->
     block = $(this).parents('.question-answer')
     rows = block.find('.rows')
     template = rows.find('.row:last').clone()

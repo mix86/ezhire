@@ -29,5 +29,7 @@ module Ezhire
 
     Mongoid.logger.level = Logger::DEBUG
     Moped.logger.level = Logger::DEBUG
+
+    config.action_controller.include_all_helpers = false
   end
 end

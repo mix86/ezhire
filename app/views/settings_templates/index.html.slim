@@ -1,0 +1,21 @@
+.row
+  .small-12.column
+    h1 Настройки
+.row
+  .small-12.column
+      dl.sub-nav
+        dd
+          a href="#{settings_path}?questionnaire"  Вопросы анкеты
+        dd
+          a href="#{settings_path}?interview"  План интервью
+        dd.active
+          a href=settings_settings_templates_path  Шаблоны
+      .row
+        .small-12.column
+          = render 'templates/grid', templates: settings.templates
+      .row
+        .small-12.column
+          a.tiny.button data-reveal-id="create-template" href="#"
+            = icon :plus
+
+= render 'templates/create_template', url: settings_settings_templates_path

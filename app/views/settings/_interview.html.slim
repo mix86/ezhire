@@ -1,0 +1,16 @@
+.row
+  .small-12.column
+    .question-answer
+      .rows
+        - if settings.interview.empty?
+          .row
+            .small-12.columns
+              input type=:text name="interview[]"
+        - settings.interview.each do |question|
+          .row
+            .small-12.columns
+              input type=:text value=question name="interview[]"
+      .row
+        .small-12.columns
+          a.tiny.button data-behaviour="new-question" href="#" +
+          input.small.button.right type="submit" value="Сохранить"
