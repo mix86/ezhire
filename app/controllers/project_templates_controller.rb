@@ -10,17 +10,17 @@ class ProjectTemplatesController < ApplicationController
   end
 
   def create
-    create!
+    project.templates << Template.new(permitted)
     redirect_to :index
   end
 
   def update
-    update!
+    template.update permitted
     redirect_to :index
   end
 
   def destroy
-    destroy!
+    template.delete
     redirect_to :index
   end
 
@@ -28,18 +28,6 @@ class ProjectTemplatesController < ApplicationController
 
   def template
     project.templates.find params[:id]
-  end
-
-  def create!
-    project.templates << Template.new(permitted)
-  end
-
-  def update!
-    template.update permitted
-  end
-
-  def destroy!
-    template.delete
   end
 
   def permitted

@@ -5,9 +5,9 @@
   .small-12.column
     = form_for :settings, url: settings_path, method: :put
       dl.sub-nav
-        dd class=active?(:questionnaire)
+        dd class=active(:questionnaire)
           a href="#{settings_path}?questionnaire"  Вопросы анкеты
-        dd class=active?(:interview)
+        dd class=active(:interview)
           a href="#{settings_path}?interview"  План интервью
         dd
           a href=settings_settings_templates_path  Шаблоны

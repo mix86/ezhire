@@ -9,17 +9,17 @@ class SettingsTemplatesController < SettingsController
   end
 
   def create
-    create!
+    settings.templates << Template.new(permitted)
     redirect_to :index
   end
 
   def update
-    update!
+    template.update permitted
     redirect_to :index
   end
 
   def destroy
-    destroy!
+    template.delete
     redirect_to :index
   end
 
@@ -27,18 +27,6 @@ class SettingsTemplatesController < SettingsController
 
   def template
     settings.templates.find params[:id]
-  end
-
-  def create!
-    settings.templates << Template.new(permitted)
-  end
-
-  def update!
-    template.update permitted
-  end
-
-  def destroy!
-    template.delete
   end
 
   def permitted
