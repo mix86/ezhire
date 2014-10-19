@@ -19,7 +19,7 @@ class SettingsController < ApplicationController
   end
 
   def settings
-    user.settings
+    user.settings ||= Settings.new
   end
 
   def questionnaire
