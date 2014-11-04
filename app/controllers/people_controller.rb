@@ -7,7 +7,9 @@ class PeopleController < ApplicationController
   end
 
   def search
-    result = Moikrug.new(city, specializations).search
+    moikrug = Moikrug.new(city, specializations)
+    result = moikrug.search
+
     result.each do |item|
       person = Person.where(name: item[:name])
       unless person.exists?
@@ -19,6 +21,8 @@ class PeopleController < ApplicationController
                                facebook: fb
       end
     end
+
+    project.update_attributes stats: { moikrug_last_query: moikrug.query }
 
     render action: :index
   end

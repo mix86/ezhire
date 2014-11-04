@@ -15,9 +15,12 @@ class Moikrug
 
     @result.map do |item|
       @item = item
+
+      Rails.logger.debug "#{item[:link]} => #{link}"
+
       @profile = fetch_profile
-      { name: item[:title].gsub(/(.*) — Мой Круг/, '\1'),
-        link: @item[:link],
+      { name: name,
+        link: link,
         nick: nick,
         skills: skills,
         userpic: userpic,
@@ -25,22 +28,23 @@ class Moikrug
     end
   end
 
-  private
-
   def query
     [@city,
      '"ищу работу"',
-     '"августа 2014"',
+     "\"#{I18n.l Date.today - 2.week, format: :month_year}\"",
      '"о себе"',
      "(#{@specializations.join(' OR ')})"].join ' '
   end
 
+  private
+
   def search_google
-    Goo.new(:moikrug).search query
+    Rails.logger.info "Google query is '#{query}'"
+    Goo.new(:moikrug, max_pages: 5).search query
   end
 
   def fetch_profile
-    response = HTTParty.get(@item[:link])
+    response = HTTParty.get(link)
     body = response.body
     body.force_encoding Encoding::CP1251
     body.encode! Encoding::UTF_8
@@ -74,8 +78,16 @@ class Moikrug
     end
   end
 
+  def name
+    @item[:title].gsub(/(?:Услуги|Лента событий)?(.*)— Мой Круг/, '\1').strip
+  end
+
+  def link
+    "http://#{nick}.moikrug.ru"
+  end
+
   def nick
-    @item[:link].gsub(/http:\/\/([a-z0-9\-]+)\.moikrug\.ru\/?/, '\1')
+    @item[:link].gsub(/http[s]?:\/\/([a-z0-9\-]+)\.moikrug\.ru\/?.*/, '\1')
   end
 
   def sanitize_strict t

@@ -10,6 +10,11 @@
             p id="queryHelpText" через зaпятую
           .small-2.column
             input.postfix type="submit" value="Искать!"
+  .row
+    .small-12.column
+      .panel.debug
+        small
+          = "moikrug_query: #{project.stats[:moikrug_last_query]}"
   - if persons.present?
     .row
       table
@@ -29,7 +34,7 @@
         h1.text-center Никого нет!
   .row
     .small-12.column
-      = link_to clear_project_people_path, method: :delete do
-        small = "Очистить песочницу"
+      = link_to clear_project_people_path, method: :delete, class: [:button, :tiny, :right] do
+        = "Очистить песочницу"
 
 = render 'events/create_event'

@@ -1,0 +1,27 @@
+ru:
+  date:
+    month_names: [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
+    standalone_month_names:
+    -
+    - Январь
+    - Февраль
+    - Март
+    - Апрель
+    - Май
+    - Июнь
+    - Июль
+    - Август
+    - Сентябрь
+    - Октябрь
+    - Ноябрь
+    - Декабрь
+    standalone_abbr_month_names: [~, янв, фев, мар, апр, май, июн, июл, авг, сен, окт, ноя, дек]
+    formats: &date_formats
+      default: "%d %B"
+      full: "%d.%m.%Y"
+      month_year: "%B %Y"
+  time:
+    formats:
+      <<: *date_formats
+      default: "%d %B %H:%M"
+      full: '%d.%m.%Y %H:%M'

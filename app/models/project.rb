@@ -4,6 +4,7 @@ class Project
   field :name, type: String
   field :note, type: String
   field :interview, type: Array, default: -> { [] }
+  field :stats, type: Hash, default: -> { {} }
 
   has_many :candidates, class_name: 'Person'
   belongs_to :owner, class_name: 'User', inverse_of: :projects

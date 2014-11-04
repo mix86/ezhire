@@ -21,7 +21,7 @@ describe Moikrug do
   private
 
   def google_result
-    [{ :title=>"Борис Бульба — Мой Круг", :link=>"http://buuu.moikrug.ru/" }]
+    [{ title: "Борис Бульба — Мой Круг", link: "http://buuu.moikrug.ru/" }]
   end
 
   def moikrug_profile
