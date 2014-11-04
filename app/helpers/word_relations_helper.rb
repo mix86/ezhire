@@ -1,0 +1,2 @@
+module WordRelationsHelper
+end

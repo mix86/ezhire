@@ -1,0 +1,38 @@
+table.editable
+  thead
+    tr
+      th Слово
+      th Отношение
+      th Другое слово
+      th.actions
+  tbody
+    - collection.each do |item|
+      tr
+        = form_for item do |f|
+          td.editable data-behaviour='show-editor' = item.target
+          td.editor
+            = f.text_field :target
+          td.editable data-behaviour='show-editor' = item.relation
+          td.editor
+            = f.select :relation, WordRelation::Relations.to_a
+          td.editable data-behaviour='show-editor' = item.source
+          td.editor
+            = f.text_field :source
+          td.editable.actions
+            = link_to word_relation_path(item), method: :delete
+              = icon :trash
+          td.editor.actions
+            a href='#' data-behaviour='submit-row' = icon 'floppy-o'
+    tr
+      = form_for :word_relation, url: word_relations_path, method: :post do |f|
+        td.editable colspan=3 data-behaviour='show-editor'
+        td.editable.actions
+          a href='#' data-behaviour='show-editor' = icon :plus
+        td.editor
+          = f.text_field :target
+        td.editor
+          = f.select :relation, WordRelation::Relations.to_a
+        td.editor
+          = f.text_field :source
+        td.editor.actions
+          a href='#' data-behaviour='submit-row' = icon 'floppy-o'

@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resources :settings_templates, path: :templates
   end
 
+  resources :word_relations
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
