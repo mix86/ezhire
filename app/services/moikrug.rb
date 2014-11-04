@@ -83,7 +83,7 @@ class Moikrug
   end
 
   def link
-    "http://#{nick}.moikrug.ru"
+    "http://#{nick}.moikrug.ru/"
   end
 
   def nick
