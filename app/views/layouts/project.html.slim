@@ -1,15 +1,20 @@
 - content_for :payload do
   .row
     .small-12.column
+      a.right data-reveal-id="edit-project" href="#"
+        = icon 'pencil-square-o'
       h1
-        = " #{project.name}"
+        = " #{project.name} "
       dl.sub-nav
+        dd class="#{active_tab == :projects ? 'active' : ''}"
+          = link_to project_path(project) do
+            = ' Описание'
         dd class="#{active_tab == :project_questionnaires ? 'active' : ''}"
           = link_to project_project_questionnaire_path(project) do
             = ' Анкета'
         dd class="#{active_tab == :project_interviews ? 'active' : ''}"
           = link_to project_project_interview_path(project) do
-            = "План интервью"
+            = "Интервью"
         dd class="#{active_tab == :people ? 'active' : ''}"
           = link_to project_people_path(project) do
             = ' Активный поиск'
@@ -30,3 +35,4 @@
         | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 = render template: "layouts/dashboard"
+= render 'projects/edit'

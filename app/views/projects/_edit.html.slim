@@ -1,0 +1,18 @@
+#edit-project.reveal-modal data-reveal=""
+  h2 Вакансия
+  = form_for :project, url: project_path(id: project), method: :put do |f|
+    .row
+      .large-12.columns
+        label
+          | Её название
+          input placeholder="оно должно быть клёвым" type="text" name="project[name]" value=project.name
+      .large-12.columns
+        label
+          | И описание
+          textarea placeholder="чем больше букв тем круче!" name="project[note]"
+            = project.note
+      .small-12.columns
+        = link_to project_path(id: project), method: :delete, class: [:small, :button, :secondary, :left] do
+          = "Удалить"
+        input.small.button.right type="submit" value="Сохранить"
+  a.close-reveal-modal ×

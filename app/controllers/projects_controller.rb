@@ -13,6 +13,11 @@ class ProjectsController < ApplicationController
   def show
   end
 
+  def update
+    project.update_attributes project_params
+    redirect_to project_path
+  end
+
   def destroy
     project.destroy!
     redirect
@@ -51,7 +56,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.permit(:name, :note)
+    params.require(:project).permit(:name, :note)
   end
 
   def layout

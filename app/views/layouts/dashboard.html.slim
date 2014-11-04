@@ -1,6 +1,6 @@
 = render template: "layouts/application"
 .row
-  .small-3.column
+  .small-2.column
     ul.side-nav
       li.heading Движуха
       li.sidebar-item
@@ -26,7 +26,7 @@
         a.left data-reveal-id="create-project" href="#"
           = icon :plus
           | Новая вакансия
-    = render 'projects/create_project'
+    = render 'projects/create'
 
-  .small-9.column
+  .small-10.column
     = yield(:payload)
