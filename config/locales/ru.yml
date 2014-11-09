@@ -1,2 +1,19 @@
 ru:
-  hallo: Привет
+  mongoid:
+    models:
+      user:
+        one: Пользователь
+        few: Пользователи
+        other: Пользователей
+        plural: Пользователи
+    attributes:
+      user:
+        current_password: Действующий пароль
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              blank: не заполнен
+              invalid: не подходит
+              too_short: слишком короткий

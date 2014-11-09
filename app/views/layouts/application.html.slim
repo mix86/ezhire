@@ -35,10 +35,12 @@ html lang="en"
                 li
                   a href=settings_path  Настройки
                 li
+                  a href=edit_user_registration_path Профиль
+                li
                   = link_to destroy_user_session_path, method: :delete do
                     | Выход
     .row
-      .small-10.small-centered.column
+      .small-12.small-centered.column
         -if notice
           .alert-box.warning data-alert=""
             = notice
