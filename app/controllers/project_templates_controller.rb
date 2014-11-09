@@ -1,7 +1,7 @@
 class ProjectTemplatesController < ApplicationController
   include Projectable
 
-  helper_method :template
+  helper_method :template, :rendered_body
 
   def index
   end
@@ -28,6 +28,11 @@ class ProjectTemplatesController < ApplicationController
   end
 
   private
+
+  def rendered_body
+    person = Person.of(current_user).find(params[:person_id])
+    Template::Renderer.new(template, person: person, project: project).call
+  end
 
   def template
     project.templates.find template_id

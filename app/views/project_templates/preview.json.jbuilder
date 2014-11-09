@@ -1,4 +1,2 @@
 json.subj template.name
-json.body template.body
-
-json.params params
+json.body rendered_body
