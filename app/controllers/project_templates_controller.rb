@@ -24,10 +24,17 @@ class ProjectTemplatesController < ApplicationController
     redirect_to :index
   end
 
+  def preview
+  end
+
   private
 
   def template
-    project.templates.find params[:id]
+    project.templates.find template_id
+  end
+
+  def template_id
+    params[:id] || params[:project_template_id]
   end
 
   def permitted

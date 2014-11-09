@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :projects do
     resource :project_interview, only: [:show, :update], path: :interview
     resource :project_questionnaire, only: [:show, :update], path: :questionnaire
-    resources :project_templates, path: :templates
+    resources :project_templates, path: :templates do
+      get :preview
+    end
 
     resources :people, only: :index do
       member do
