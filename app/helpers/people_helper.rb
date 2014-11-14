@@ -4,10 +4,12 @@ module PeopleHelper
   end
 
   def moikrug_name person
+    return '' unless person.moikrug
     person.moikrug[:nick]
   end
 
   def moikrug_url person
+    return '' unless person.moikrug
     person.moikrug[:link]
   end
 

@@ -6,6 +6,14 @@ class PeopleController < ApplicationController
   def index
   end
 
+  def create
+    create_person permitted[:name]
+    render action: :index
+  end
+
+  def update
+  end
+
   def search
     moikrug = Moikrug.new(city, specializations)
     result = moikrug.search
@@ -14,11 +22,7 @@ class PeopleController < ApplicationController
       person = Person.where(name: item[:name])
       unless person.exists?
         fb = Faceboo.new(item[:name]).search_one
-        person = Person.create name: item[:name],
-                               owner: current_user,
-                               project: project,
-                               moikrug: item,
-                               facebook: fb
+        person = create_person item[:name], moikrug: item, facebook: fb
       end
     end
 
@@ -54,11 +58,24 @@ class PeopleController < ApplicationController
 
   private
 
+  def create_person name, options = Hash.new
+    Person.create name: name,
+                  owner: current_user,
+                  project: project,
+                  moikrug: options[:moikrug],
+                  facebook: options[:facebook]
+  end
+
+
   def city
     params[:city]
   end
 
   def specializations
     params[:query].split(',').map(&:strip)
+  end
+
+  def permitted
+    params.require(:person).permit(:name)
   end
 end

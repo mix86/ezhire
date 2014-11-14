@@ -24,7 +24,8 @@
             tr
               td.userpic
                 a.th data-reveal-id="showPerson-#{person.id}" href="#"
-                  img.userpic src=person.moikrug[:userpic]
+                - if person.moikrug
+                    img.userpic src=person.moikrug[:userpic]
               td
                 a data-reveal-id="showPerson-#{person.id}" href="#"
                   = person.name
@@ -34,7 +35,21 @@
         h1.text-center Никого нет!
   .row
     .small-12.column
-      = link_to clear_project_people_path, method: :delete, class: [:button, :tiny, :right] do
+      a.button.tiny.right href='#' data-reveal-id="create-person"
+        = "Добавить человечка"
+      = link_to clear_project_people_path, method: :delete, class: [:button, :tiny, :right, :secondary] do
         = "Очистить песочницу"
 
 = render 'events/create_event'
+
+#create-person.reveal-modal data-reveal=''
+  h2 Добавить человечка
+  = form_for :person, url: project_people_path, method: :post do |f|
+    .row
+      .small-12.columns
+        label
+          | Имя
+          = f.text_field :name
+    .row
+      .small-12.columns
+        input.small.button.right type="submit" value="Сохранить"
