@@ -24,8 +24,7 @@
             tr
               td.userpic
                 a.th data-reveal-id="showPerson-#{person.id}" href="#"
-                - if person.moikrug
-                    img.userpic src=person.moikrug[:userpic]
+                  img.userpic src=userpic_src(person)
               td
                 a data-reveal-id="showPerson-#{person.id}" href="#"
                   = person.name

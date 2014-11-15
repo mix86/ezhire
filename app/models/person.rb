@@ -7,8 +7,18 @@ class Person
   end
 
   field :name, type: String
-  field :moikrug, type: Hash
-  field :facebook, type: Hash
+
+  field :moikrug_link, type: String
+  field :moikrug_profile, type: Hash
+
+  field :facebook_link, type: String
+  field :facebook_profile, type: Hash
+
+  field :skills, type: String, default: ''
+  field :experience, type: Array, default: -> { Array.new }
+
+  field :contacts, type: Array
+
   field :status, type: String, default: :new
 
   scope :of, -> (user) { where(owner: user) }

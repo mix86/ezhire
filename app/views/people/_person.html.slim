@@ -2,8 +2,7 @@
   .row
     .small-3.column
       span.th
-        - if person.moikrug
-          img src=person.moikrug[:userpic]
+        img src=userpic_src(person)
     .small-8.column
       h3 = person.name
       dl.tabs data-tab=""
@@ -40,15 +39,13 @@
               span
                 | +7 (903) 111-22-33
         .content id="panel-skills-#{person.id}"
-        - if person.moikrug
-            p = raw(person.moikrug[:skills])
+          p = raw(person.skills)
         .content id="panel-experience-#{person.id}"
-          - if person.moikrug
-            - person.moikrug[:experience].each do |item|
-              h5
-                = "#{item[:title]} "
-                small = item[:company]
-              p = raw(item[:duties])
+          - person.experience.each do |item|
+            h5
+              = "#{item[:title]} "
+              small = item[:company]
+            p = raw(item[:duties])
     .small-1.column
       - if person.new?
         = link_to accept_project_person_path(id: person.id), method: :put do
