@@ -1,0 +1,29 @@
+= form_for person, url: project_person_path, method: :patch do |f|
+  .row
+    .small-3.column
+      span.th
+        img src=userpic_src(person)
+    .small-9.column
+      h3 = person.name
+    .small-9.column
+      label
+        | Имя
+        = f.text_field :name
+    .small-9.column
+      dl.tabs data-tab=""
+        dd.active
+          a href="#panel-contacts"  Контакты
+        dd
+          a href="#panel-skills"  Скилы
+        dd
+          a href="#panel-experience"  Опыт
+      .tabs-content
+        .content.active id="panel-contacts"
+          = render 'contacts', f: f
+        .content id="panel-skills"
+          = render 'skills', f: f
+        .content id="panel-experience"
+          = render 'experience', f: f
+  .row
+    .small-12.column
+      input.button.small.right type=:submit value='Сохранить'

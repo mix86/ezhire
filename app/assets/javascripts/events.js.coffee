@@ -1,5 +1,5 @@
 $ ->
-  $("a[data-reveal-id=createEvent]").click ->
+  $("a[data-reveal-id=create-event]").click ->
     $this = $(this)
     personId = $this.data('personId')
     parentEvent = $this.data('parentEvent')

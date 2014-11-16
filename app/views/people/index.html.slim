@@ -17,17 +17,16 @@
           = "moikrug_query: #{project.stats[:moikrug_last_query]}"
   - if persons.present?
     .row
-      table
+      table data-selected-person="#{(person && person.id)}"
         tbody
           - persons.each_with_index do |person, i|
             = render 'person', person: person
             tr
               td.userpic
-                a.th data-reveal-id="showPerson-#{person.id}" href="#"
-                - if person.moikrug
-                    img.userpic src=person.moikrug[:userpic]
+                a.th data-reveal-id="show-person-#{person.id}" href="#"
+                  img.userpic src=userpic_src(person)
               td
-                a data-reveal-id="showPerson-#{person.id}" href="#"
+                a data-reveal-id="show-person-#{person.id}" href="#"
                   = person.name
   - elsif params[:query].present?
     .row

@@ -1,0 +1,42 @@
+.row
+  fieldset
+    legend Поговорить
+    .small-4.column
+      = field_row icon(:at) do
+        = f.text_field :email
+    .small-4.column
+      = field_row icon(:phone) do
+        = f.text_field :phone
+    .small-4.column
+      = field_row icon(:skype) do
+        = f.text_field :skype
+.row
+  fieldset
+    legend Про работу
+    .small-6.column
+      = field_row 'MK' do
+          = f.text_field :moikrug_link
+    .small-6.column
+      = field_row icon(:linkedin) do
+        = f.text_field :linkedin_link
+    .small-6.column
+      = field_row icon(:github) do
+        = f.text_field :github_link
+    .small-6.column
+      = field_row icon('stack-overflow') do
+        = f.text_field :stackoverflow_link
+.row
+  fieldset
+    legend Социалочки
+    .small-6.column
+      = field_row icon(:facebook) do
+        = f.text_field :facebook_link
+    .small-6.column
+      = field_row icon(:vk) do
+        = f.text_field :vk_link
+    .small-6.column
+      = field_row icon(:twitter) do
+        = f.text_field :twitter_link
+    .small-6.column
+      = field_row icon('google-plus') do
+        = f.text_field :googleplus_link

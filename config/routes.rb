@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get :preview
     end
 
-    resources :people, only: [:index, :create, :update] do
+    resources :people, only: [:index, :create, :show, :update] do
       member do
         put :accept
         put :reject

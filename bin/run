@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-bundle install --path vendor/bundle && bundle exec puma -e $RAILS_ENV
+bundle install --path vendor/bundle && bundle exec rake db:migrate && bundle exec puma -e $RAILS_ENV

@@ -1,0 +1,7 @@
+.row
+  .small-12.column
+    - person.experience.each do |item|
+      h5
+        = "#{item[:title]} "
+        small = item[:company]
+      p = raw(item[:duties])
