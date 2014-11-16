@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   include Projectable
 
-  helper_method :persons
+  helper_method :person, :persons
 
   def index
   end
@@ -11,7 +11,13 @@ class PeopleController < ApplicationController
     render action: :index
   end
 
+  def show
+    render layout: -> { 'layouts/application' }
+  end
+
   def update
+    person.update_attributes(permitted)
+    redirect_to project_person_path
   end
 
   def search
@@ -53,7 +59,7 @@ class PeopleController < ApplicationController
   end
 
   def person
-    @person ||= Person.of(current_user).find(params[:id])
+    @person ||= Person.of(current_user).find(params[:id]) if params[:id]
   end
 
   private
@@ -62,10 +68,13 @@ class PeopleController < ApplicationController
     Person.create name: name,
                   owner: current_user,
                   project: project,
-                  moikrug: options[:moikrug],
-                  facebook: options[:facebook]
+                  moikrug_link: options[:moikrug][:link],
+                  moikrug_profile: options[:moikrug],
+                  facebook_link: (options[:facebook] && options[:facebook][:link]),
+                  facebook_profile: options[:facebook],
+                  skills: options[:moikrug][:skills],
+                  experience: options[:moikrug][:experience]
   end
-
 
   def city
     params[:city]
@@ -76,6 +85,17 @@ class PeopleController < ApplicationController
   end
 
   def permitted
-    params.require(:person).permit(:name)
+    params.require(:person).permit(:name,
+                                   :email,
+                                   :phone,
+                                   :skype,
+                                   :moikrug_link,
+                                   :linkedin_link,
+                                   :github_link,
+                                   :stackoverflow_link,
+                                   :facebook_link,
+                                   :vk_link,
+                                   :twitter_link,
+                                   :googleplus_link)
   end
 end

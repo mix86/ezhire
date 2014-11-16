@@ -25,4 +25,19 @@ module ApplicationHelper
   def t dt
     dt.strftime '%H:%M'
   end
+
+  def field_row label, &block
+    content = capture(&block)
+    html = <<-HTML
+    <div class='row collapse prefix-radius'>
+      <div class='small-2 columns'>
+        <span class='prefix'><b>#{label}</b></span>
+      </div>
+      <div class='small-10 columns'>
+        #{content}
+      </div>
+    </div>
+    HTML
+    raw html
+  end
 end

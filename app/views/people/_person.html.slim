@@ -1,44 +1,49 @@
-.reveal-modal data-reveal='' id="showPerson-#{person.id}"
+.reveal-modal data-reveal='' id="show-person-#{person.id}"
+  = link_to project_person_path(id: person.id), class: :right do
+    = icon 'pencil-square-o'
   .row
     .small-3.column
       span.th
         img src=userpic_src(person)
-    .small-8.column
+    .small-9.column
       h3 = person.name
+      .row
+        .small-6.column
+          = email_link person
+        .small-6.column
+          = phone_link person
+      .row
+        .small-6.column
+          = skype_link person
+        .small-6.column
+          = moikrug_link person
+      .row
+        .small-6.column
+          = linkedin_link person
+        .small-6.column
+          = github_link person
+      .row
+        .small-6.column
+          = stackoverflow_link person
+        .small-6.column
+          = facebook_link person
+      .row
+        .small-6.column
+          = vk_link person
+        .small-6.column
+          = twitter_link person
+      .row
+        .small-6.column
+          = googleplus_link person
       dl.tabs data-tab=""
+        / dd.active
+        /   a href="#panel-contacts-#{person.id}"  Контакты
         dd.active
-          a href="#panel-contacts-#{person.id}"  Контакты
-        dd
           a href="#panel-skills-#{person.id}"  Скилы
         dd
           a href="#panel-experience-#{person.id}"  Опыт
       .tabs-content
-        .content.active id="panel-contacts-#{person.id}"
-          .row
-            .small-1.column
-              span = "MK"
-            .small-11.column
-              a href=moikrug_url(person) target="_blank"
-                = moikrug_name(person)
-          .row
-            .small-1.column
-              = icon :facebook
-            .small-11.column
-              a href=facebook_url(person) target="_blank"
-                | профиль
-          .row
-            .small-1.column
-              = icon :at
-            .small-11.column
-              a href="mailto:foo@bar.org" target="_blank"
-                | foo@bar.org
-          .row
-            .small-1.column
-              = icon :phone
-            .small-11.column
-              span
-                | +7 (903) 111-22-33
-        .content id="panel-skills-#{person.id}"
+        .content.active id="panel-skills-#{person.id}"
           p = raw(person.skills)
         .content id="panel-experience-#{person.id}"
           - person.experience.each do |item|
@@ -46,13 +51,12 @@
               = "#{item[:title]} "
               small = item[:company]
             p = raw(item[:duties])
-    .small-1.column
+    .small-12.column
       - if person.new?
-        = link_to accept_project_person_path(id: person.id), method: :put do
+        = link_to accept_project_person_path(id: person.id), method: :put, class: [:button, :right, :small] do
           = icon 'thumbs-up'
-        br
-        = link_to reject_project_person_path(id: person.id), method: :put do
-          = icon 'thumbs-down'
+        = link_to reject_project_person_path(id: person.id), method: :put, class: [:button, :small, :secondary] do
+          = icon 'trash'
       - else
-        a.left data-reveal-id="createEvent" data-person-id=person.id href="#"
+        a.button.right.small data-reveal-id="create-event" data-person-id=person.id href="#"
           = icon :comment
