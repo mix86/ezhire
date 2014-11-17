@@ -21,7 +21,7 @@ class PeopleController < ApplicationController
   end
 
   def search
-    moikrug = Moikrug.new(city, specializations)
+    moikrug = Moikrug.new(city, specializations, months, looking_for?)
     result = moikrug.search
 
     result.each do |item|
@@ -78,6 +78,14 @@ class PeopleController < ApplicationController
 
   def city
     params[:city]
+  end
+
+  def months
+    params[:months].to_i
+  end
+
+  def looking_for?
+    !params[:looking_for].to_i.zero?
   end
 
   def specializations

@@ -1,7 +1,9 @@
 class Moikrug
-  def initialize city, specializations
+  def initialize city, specializations, months = 1, looking_for = true
     @city = city
     @specializations = specializations
+    @months = months
+    @looking_for = looking_for
 
     @skills_xpath = '//div[@class="Profile_Info"]/div/div[1]'
     @positions_xpath = '//ul[@class="Profile_PositionList"]/li'
@@ -19,21 +21,33 @@ class Moikrug
       Rails.logger.debug "#{item[:link]} => #{link}"
 
       @profile = fetch_profile
+
+      next unless @profile
+
       { name: name,
         link: link,
         nick: nick,
         skills: skills,
         userpic: userpic,
         experience: experience }
-    end
+    end.compact
   end
 
   def query
-    [@city,
-     '"ищу работу"',
-     "\"#{I18n.l Date.today - 2.week, format: :month_year}\"",
-     '"о себе"',
-     "(#{@specializations.join(' OR ')})"].join ' '
+    q = [@city]
+    if @looking_for
+      q << '"ищу работу"'
+      q << "(#{query_dates.join(' OR ')})"
+    end
+    q << '"о себе"'
+    q << "(#{@specializations.join(' OR ')})"
+    q.join ' '
+  end
+
+  def query_dates
+    (0...@months).map do |i|
+      "\"#{I18n.l Date.today - i.month, format: :month_year}\""
+    end
   end
 
   private
@@ -49,6 +63,9 @@ class Moikrug
     body.force_encoding Encoding::CP1251
     body.encode! Encoding::UTF_8
     Nokogiri::HTML(body)
+  rescue SocketError => e
+    Rails.logger.error e
+    nil
   end
 
   def skills
