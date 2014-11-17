@@ -25,7 +25,7 @@
                     = event.planned_at.strftime '%d.%m.%Y'
               td
                 = link_to event_path(event) do
-                  = event.person.name
+                  = event.person.try :name
                 br
                 small
                   = event.note

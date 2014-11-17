@@ -8,3 +8,7 @@ $ ->
   if person_id
     modal = $ "#show-person-#{person_id}"
     modal.foundation('reveal', 'open')
+
+  $("[data-behaviour=show-advanced-search]").click ->
+    $('#advanced-search').show()
+    false

@@ -1,15 +1,32 @@
 - content_for :active_tab do
-  .row
-    = form_for :person, url: search_project_people_path, method: :post
+  = form_for :person, url: search_project_people_path, method: :post
+    .row
       .small-12.column
         .row.collapse
-          .small-2.column
-            input.prefix type="text" placeholder="Город" name="city" value=(params[:city].nil? ? "москва" : params[:city])
-          .small-8.column
+          .small-10.column
             input type="text" placeholder="Кейворды" name="query" value=params[:query] aria-describedby="queryHelpText"
-            p id="queryHelpText" через зaпятую
+            p.stuck-bottom
+              | через зaпятую
+              a.right href="#" data-behaviour='show-advanced-search' Расширенный поиск
           .small-2.column
             input.postfix type="submit" value="Искать!"
+    #advanced-search.panel.callout
+      .row
+        .small-4.column
+          label
+            | В городе
+            input type="text" placeholder="Город" name="city" value=(params[:city].nil? ? "москва" : params[:city])
+        .small-4.column
+          label
+            | За последние
+            input type="number" name="months" value=(params[:months].nil? ? 1 : params[:months])
+            p.stuck-bottom месяцa
+        .small-4.column
+          label Ищет работу
+          input#looking-for name="looking_for" type="radio" value=1 checked='checked'
+          label for="looking-for" Да
+          input#not-looking-for name="looking_for" type="radio" value=''
+          label for="not-looking-for" Нет
   .row
     .small-12.column
       .panel.debug

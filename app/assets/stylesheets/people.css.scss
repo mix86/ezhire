@@ -7,7 +7,11 @@
 
 @import "foundation/components/type";
 
-#queryHelpText {
+#advanced-search {
+  display: none;
+}
+
+.stuck-bottom {
   margin-top: -1rem;
   padding-left: 0.5rem;
   color: $small-font-color;
