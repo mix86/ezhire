@@ -79,8 +79,7 @@ namespace :deploy do
     task :precompile_local do
       # compile assets locally
       run_locally do
-        execute "bundle exec rake assets:precompile"
-        # execute "RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile"
+        execute "RAILS_ENV=#{fetch(:stage)} bundle exec rake assets:precompile"
       end
 
       # copy to each server
