@@ -30,8 +30,8 @@ class PeopleController < ApplicationController
       person = Person.of(current_user).where(name: result.name, project: project)
 
       unless person.exists?
-        moikrug = Moikrug::ProfileFetcher.new(link: result.moikrug_link).call
-        facebook = {} # Faceboo::ProfileFetcher.new(link: result.facebook_link).call
+        moikrug = Moikrug::ProfileFetcher.new(link: result.moikrug_link).call || {}
+        facebook = {} # Faceboo::ProfileFetcher.new(link: result.facebook_link).call || {}
         person = create_person result.name, moikrug: moikrug, facebook: facebook
       end
     end

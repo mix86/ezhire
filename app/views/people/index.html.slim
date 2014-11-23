@@ -53,7 +53,7 @@
       .small-12.column
         - next_page = project.stats[:pages_processed].to_i + 1
         input type=:hidden name=:page value=next_page
-        - if persons.present?
+        - if persons.present? && last_query.specializations.present?
           input.button.expand.success type="submit" value="Еще!" name=:more
     .row
       .small-12.column

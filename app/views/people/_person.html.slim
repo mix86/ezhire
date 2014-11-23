@@ -46,7 +46,7 @@
         .content.active id="panel-skills-#{person.id}"
           p = raw(person.skills)
         .content id="panel-experience-#{person.id}"
-          - person.experience.each do |item|
+          - (person.experience || []).each do |item|
             h5
               = "#{item[:title]} "
               small = item[:company]
