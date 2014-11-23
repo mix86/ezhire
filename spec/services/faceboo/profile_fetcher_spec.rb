@@ -1,12 +1,12 @@
-describe Faceboo do
+describe Faceboo::ProfileFetcher do
   before :each do
-    @facebook = Faceboo.new "Аркадий Климовский"
+    @facebook = Faceboo::ProfileFetcher.new name: "Аркадий Климовский"
     allow(@facebook).to receive(:search_google).and_return google_result
     # allow(@facebook).to receive(:fetch_profile).and_return facebook_profile
   end
 
   it do
-    expect(@facebook.search_one).to eq({ link: "https://ru-ru.facebook.com/klimovsky" })
+    expect(@facebook.call).to eq({ link: "https://ru-ru.facebook.com/klimovsky" })
   end
 
   def google_result

@@ -1,10 +1,10 @@
 - content_for :active_tab do
-  = form_for :person, url: search_project_people_path, method: :post
+  = form_for last_query, url: search_project_people_path, method: :post do |f|
     .row
       .small-12.column
         .row.collapse
           .small-10.column
-            input type="text" placeholder="Кейворды" name="query" value=params[:query] aria-describedby="queryHelpText"
+            = f.text_field :specializations, placeholder: "Кейворды", value: last_query.specializations.join(", ")
             p.stuck-bottom
               | через зaпятую
               a.right href="#" data-behaviour='show-advanced-search' Расширенный поиск
@@ -15,46 +15,52 @@
         .small-4.column
           label
             | В городе
-            input type="text" placeholder="Город" name="city" value=(params[:city].nil? ? "москва" : params[:city])
+            = f.text_field :city, placeholder: "Москва"
         .small-4.column
           label
             | За последние
-            input type="number" name="months" value=(params[:months].nil? ? 1 : params[:months])
+            = f.text_field :period, placeholder: "2"
             p.stuck-bottom месяцa
         .small-4.column
           label Ищет работу
-          input#looking-for name="looking_for" type="radio" value=1 checked='checked'
+          = f.radio_button :contender, true
           label for="looking-for" Да
-          input#not-looking-for name="looking_for" type="radio" value=''
+          = f.radio_button :contender, false
           label for="not-looking-for" Нет
-  .row
-    .small-12.column
-      .panel.debug
-        small
-          = "moikrug_query: #{project.stats[:moikrug_last_query]}"
-  - if persons.present?
-    .row
-      table data-selected-person="#{(person && person.id)}"
-        tbody
-          - persons.each_with_index do |person, i|
-            = render 'person', person: person
-            tr
-              td.userpic
-                a.th data-reveal-id="show-person-#{person.id}" href="#"
-                  img.userpic src=userpic_src(person)
-              td
-                a data-reveal-id="show-person-#{person.id}" href="#"
-                  = person.name
-  - elsif params[:query].present?
     .row
       .small-12.column
-        h1.text-center Никого нет!
-  .row
-    .small-12.column
-      a.button.tiny.right href='#' data-reveal-id="create-person"
-        = "Добавить человечка"
-      = link_to clear_project_people_path, method: :delete, class: [:button, :tiny, :right, :secondary] do
-        = "Очистить песочницу"
+        .panel.debug
+          small
+            = "moikrug_query: #{project.stats[:moikrug_last_query]}"
+    - if persons.present?
+      .row
+        table data-selected-person="#{(person && person.id)}"
+          tbody
+            - persons.each_with_index do |person, i|
+              = render 'person', person: person
+              tr
+                td.userpic
+                  a.th data-reveal-id="show-person-#{person.id}" href="#"
+                    img.userpic src=userpic_src(person)
+                td
+                  a data-reveal-id="show-person-#{person.id}" href="#"
+                    = person.name
+    - elsif params[:query].present?
+      .row
+        .small-12.column
+          h1.text-center Никого нет!
+    .row
+      .small-12.column
+        - next_page = project.stats[:pages_processed].to_i + 1
+        input type=:hidden name=:page value=next_page
+        - if persons.present?
+          input.button.expand.success type="submit" value="Еще!" name=:more
+    .row
+      .small-12.column
+        a.button.tiny.right href='#' data-reveal-id="create-person"
+          = "Добавить человечка"
+        = link_to clear_project_people_path, method: :delete, class: [:button, :tiny, :right, :secondary] do
+          = "Очистить песочницу"
 
 = render 'events/create_event'
 

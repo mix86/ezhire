@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   include Projectable
 
-  helper_method :person, :persons
+  helper_method :person, :persons, :last_query
 
   def index
   end
@@ -21,18 +21,23 @@ class PeopleController < ApplicationController
   end
 
   def search
-    moikrug = Moikrug.new(city, specializations, months, looking_for?)
-    result = moikrug.search
+    project.search_queries << query
+    project.save!
 
-    result.each do |item|
-      person = Person.where(name: item[:name])
+    digger = Digger.new query, start: page
+
+    digger.call do |result|
+      person = Person.of(current_user).where(name: result.name, project: project)
+
       unless person.exists?
-        fb = Faceboo.new(item[:name]).search_one
-        person = create_person item[:name], moikrug: item, facebook: fb
+        moikrug = Moikrug::ProfileFetcher.new(link: result.moikrug_link).call
+        facebook = {} # Faceboo::ProfileFetcher.new(link: result.facebook_link).call
+        person = create_person result.name, moikrug: moikrug, facebook: facebook
       end
     end
 
-    project.update_attributes stats: { moikrug_last_query: moikrug.query }
+    project.update_attributes stats: { moikrug_last_query: digger.moikrug_query,
+                                       pages_processed: page }
 
     render action: :index
   end
@@ -55,7 +60,10 @@ class PeopleController < ApplicationController
   end
 
   def persons
-    @persons ||= Person.of(current_user).where(project: project).in(status: [:new, :accepted])
+    @persons ||= Person.of(current_user)
+                       .where(project: project)
+                       .in(status: [:new, :accepted])
+                       .order(created_at: 1)
   end
 
   def person
@@ -76,20 +84,24 @@ class PeopleController < ApplicationController
                   experience: options[:moikrug][:experience]
   end
 
-  def city
-    params[:city]
+  def query
+    @query ||= SearchQuery.new search_params
   end
 
-  def months
-    params[:months].to_i
+  def last_query
+    project.search_queries.last || SearchQuery.new
   end
 
-  def looking_for?
-    !params[:looking_for].to_i.zero?
+  def page
+    params[:more].present? ? (params[:page].to_i || 1) : 1
   end
 
-  def specializations
-    params[:query].split(',').map(&:strip)
+  def search_params
+    search_params = params.require(:search_query).permit(:specializations, :city, :period, :contender)
+    search_params[:specializations] = search_params[:specializations].split(",").map(&:strip)
+    search_params[:city] = "Москва" unless search_params[:city].present?
+    search_params[:period] = 2 unless search_params[:period].present?
+    search_params
   end
 
   def permitted
