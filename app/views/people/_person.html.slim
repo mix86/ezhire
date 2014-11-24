@@ -5,36 +5,20 @@
     .small-3.column
       span.th
         img src=userpic_src(person)
+      .contact-data
+        = email_link person
+        = phone_link person
+        = skype_link person
+        = moikrug_link person
+        = linkedin_link person
+        = github_link person
+        = stackoverflow_link person
+        = vk_link person
+        = twitter_link person
+        = googleplus_link person
+        = resume_link person
     .small-9.column
       h3 = person.name
-      .row
-        .small-6.column
-          = email_link person
-        .small-6.column
-          = phone_link person
-      .row
-        .small-6.column
-          = skype_link person
-        .small-6.column
-          = moikrug_link person
-      .row
-        .small-6.column
-          = linkedin_link person
-        .small-6.column
-          = github_link person
-      .row
-        .small-6.column
-          = stackoverflow_link person
-        .small-6.column
-          = facebook_link person
-      .row
-        .small-6.column
-          = vk_link person
-        .small-6.column
-          = twitter_link person
-      .row
-        .small-6.column
-          = googleplus_link person
       dl.tabs data-tab=""
         / dd.active
         /   a href="#panel-contacts-#{person.id}"  Контакты

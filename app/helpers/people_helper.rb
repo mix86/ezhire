@@ -91,4 +91,8 @@ module PeopleHelper
   def facebook_link person
     contact_link person.facebook_link, facebook_name(person), icon(:facebook)
   end
+
+  def resume_link person
+    contact_link person.resume_link, person.resume_link, icon('file-o')
+  end
 end

@@ -116,6 +116,7 @@ class PeopleController < ApplicationController
                                    :facebook_link,
                                    :vk_link,
                                    :twitter_link,
-                                   :googleplus_link)
+                                   :googleplus_link,
+                                   :resume_link)
   end
 end

@@ -40,3 +40,13 @@
     .small-6.column
       = field_row icon('google-plus') do
         = f.text_field :googleplus_link
+
+.row
+  fieldset
+    legend Резюме
+    .small-12.column
+      = field_row icon('file-o') do
+        = f.text_field :resume_link, placeholder: "ссылка на файл"
+
+
+

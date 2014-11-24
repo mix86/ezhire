@@ -29,6 +29,7 @@ class Person
   field :vk_link, type: String
   field :twitter_link, type: String
   field :googleplus_link, type: String
+  field :resume_link, type: String
 
   field :status, type: String, default: :new
 
