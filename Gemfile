@@ -43,7 +43,7 @@ gem 'httparty'
 gem 'nokogiri'
 gem 'sanitize'
 
-gem "mongoid", "~> 4.0.0"
+gem 'mongoid', '~> 4.0.0'
 gem 'moped', '~> 2.0.1'
 gem 'bson_ext'
 
@@ -52,15 +52,17 @@ gem 'slim'
 gem 'foundation-rails'
 gem 'font-awesome-sass', '~> 4.2.0'
 gem 'devise', '~> 3.4.0'
-gem "enumerate_it"
+gem 'enumerate_it'
+
+gem 'redcarpet'
 
 group :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem "spring-commands-rspec"
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'spring-commands-rspec'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'capistrano', '~> 3.2.0'
 end
 

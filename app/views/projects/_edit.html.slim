@@ -11,6 +11,9 @@
           | И описание
           textarea placeholder="чем больше букв тем круче!" name="project[note]"
             = project.note
+        p.stuck-bottom
+          = "Здесь уместен "
+          a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" Markdown
       .small-12.columns
         = link_to project_path(id: project), method: :delete, class: [:small, :button, :secondary, :left] do
           = "Удалить"

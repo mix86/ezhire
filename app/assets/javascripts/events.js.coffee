@@ -18,6 +18,10 @@ $ ->
     if url
       $.getJSON url, (data) ->
         console.log data
-        $('#preview').val(data.body)
+        $('#preview').html(data.html_body)
+        $('#preview-html').val(data.html_body)
+        $('#preview-raw').val(data.body)
     else
-      $('#preview').val('')
+      $('#preview').html('')
+      $('#preview-html').val('')
+      $('#preview-raw').val('')

@@ -10,7 +10,7 @@ table
       tr
         td
           a href=template_path(id: template) = template.name
-        td = template.body
+        td = markdown template.body
         td = icon :check if template.private?
         td.small-text-center
           = link_to template_path(id: template), method: :delete do

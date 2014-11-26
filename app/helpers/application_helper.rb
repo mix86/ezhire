@@ -40,4 +40,16 @@ module ApplicationHelper
     HTML
     raw html
   end
+
+  def markdown(content)
+    @markdown ||= Redcarpet::Markdown.new Redcarpet::Render::HTML,
+                                          fenced_code_blocks: true,
+                                          space_after_headers: true,
+                                          no_intra_emphasis: true,
+                                          autolink: true,
+                                          strikethrough: true,
+                                          highlight: true,
+                                          quote: true
+    raw @markdown.render(content)
+  end
 end
