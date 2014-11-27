@@ -32,9 +32,6 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
@@ -63,7 +60,6 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'capistrano', '~> 3.2.0'
 end
 
 group :test do
