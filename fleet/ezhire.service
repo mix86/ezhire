@@ -1,0 +1,12 @@
+[Unit]
+Description=ezHire app
+After=ezmongo.service
+
+[Service]
+User=core
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull mixael/ezhire
+ExecStartPre=-/usr/bin/docker kill ezhire
+ExecStartPre=-/usr/bin/docker rm ezhire
+ExecStart=/usr/bin/docker run --link ez-mongo0:mongo -p 80:80 --name ezhire mixael/ezhire bin/run
+ExecStop=/usr/bin/docker stop ezhire
