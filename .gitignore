@@ -20,3 +20,4 @@ public/assets
 .ruby-gemset
 .ruby-version
 vendor/bundle
+.docker

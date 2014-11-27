@@ -1,0 +1,11 @@
+[Unit]
+Description=MongoDB instance for ezHire
+After=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull mongo:latest
+ExecStartPre=-/usr/bin/docker stop ez-mongo0
+ExecStartPre=-/usr/bin/docker rm ez-mongo0
+ExecStart=/usr/bin/docker run -v /home/core/ezhire/data:/data/db --name ez-mongo0 mongo
+ExecStop=/usr/bin/docker stop ez-mongo0
