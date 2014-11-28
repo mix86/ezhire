@@ -36,6 +36,7 @@ gem 'moped', '~> 2.0.1'
 gem 'bson_ext'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'slim'
 gem 'foundation-rails'
 gem 'font-awesome-sass', '~> 4.2.0'

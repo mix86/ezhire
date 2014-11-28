@@ -1,5 +1,5 @@
 .question-answer
-  .rows
+  .rows.sortable
     - if collection.empty?
       .row
         .small-12.columns
@@ -9,9 +9,14 @@
 
     - collection.each do |question|
       .row
-        .small-12.columns
+        .small-11.columns
+          .reorder-handle
+            = icon :bars
           label
             span.question = question.question
+            .pull-right
+              a href="#" data-behaviour='edit-question'
+                = icon 'pencil-square-o'
             input type=:hidden name="#{key}[][question]" value=question.question
             textarea name="#{key}[][answer]"
               = question.answer

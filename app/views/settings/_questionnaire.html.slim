@@ -1,15 +1,19 @@
 .row
   .small-12.column
     .question-answer
-      .rows
+      .rows.sortable
         - if settings.questionnaire.empty?
           .row
             .small-12.columns
               input type=:text name="questionnaire[]"
         - settings.questionnaire.each do |question|
           .row
-            .small-12.columns
-              input type=:text value=question name="questionnaire[]"
+            .row.collapse.postfix-radius
+              .small-11.columns
+                input type=:text value=question name="questionnaire[]"
+              .small-1.columns
+                span.postfix
+                  = icon :bars
       .row
         .small-12.columns
           a.tiny.button data-behaviour="new-question" href="#" +

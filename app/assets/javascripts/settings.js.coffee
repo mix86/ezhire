@@ -11,3 +11,7 @@ $ ->
     rows.append(template)
     false
 
+  $('a[data-behaviour=edit-question]').click ->
+    block = $(this).parents('label')
+    block.find('input[type=hidden]').attr('type', 'text')
+    false
