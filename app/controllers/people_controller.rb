@@ -73,15 +73,8 @@ class PeopleController < ApplicationController
   private
 
   def create_person name, options = Hash.new
-    Person.create name: name,
-                  owner: current_user,
-                  project: project,
-                  moikrug_link: options[:moikrug][:link],
-                  moikrug_profile: options[:moikrug],
-                  facebook_link: (options[:facebook] && options[:facebook][:link]),
-                  facebook_profile: options[:facebook],
-                  skills: options[:moikrug][:skills],
-                  experience: options[:moikrug][:experience]
+    Person::Creator.new(name, options.merge(project: project,
+                                            user: current_user)).call
   end
 
   def query
