@@ -15,3 +15,8 @@ $ ->
     block = $(this).parents('label')
     block.find('input[type=hidden]').attr('type', 'text')
     false
+
+  $('a[data-behaviour=remove-question]').click ->
+      block = $(this).parents('label').parent().parent()
+      block.remove()
+      false

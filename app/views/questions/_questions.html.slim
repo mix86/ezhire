@@ -17,6 +17,8 @@
             .pull-right
               a href="#" data-behaviour='edit-question'
                 = icon 'pencil-square-o'
+              a href="#" data-behaviour='remove-question'
+                = icon :times
             input type=:hidden name="#{key}[][question]" value=question.question
             textarea name="#{key}[][answer]"
               = question.answer
