@@ -10,5 +10,5 @@ class WordRelation
   field :target, type: String
   field :relation, type: String
 
-  has_enumeration_for :relation, :with => Relations, :create_helpers => true
+  has_enumeration_for :relation, with: Relations, create_helpers: true
 end

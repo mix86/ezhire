@@ -28,7 +28,7 @@ class Event
   validates :owner, presence: true
   validates :planned_at, presence: true
 
-  has_enumeration_for :kind, :with => Kind, :create_helpers => true
+  has_enumeration_for :kind, with: Kind, create_helpers: true
 
   def close!
     self.closed_at = Time.zone.now
@@ -50,5 +50,4 @@ class Event
     return interview if interview.present?
     project.interview.map { |question| Question.new(question: question) }
   end
-
 end

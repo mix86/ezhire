@@ -16,7 +16,7 @@ class Person
   field :facebook_link, type: String
   field :facebook_profile, type: Hash
 
-  field :skills, type: String, default: ''
+  field :skills, type: String, default: ""
   field :experience, type: Array, default: -> { Array.new }
 
   field :email, type: String
@@ -39,8 +39,7 @@ class Person
   belongs_to :owner, class_name: "User", inverse_of: :candidates
   belongs_to :project
 
-  has_enumeration_for :status, :with => Status, :create_helpers => true
-
+  has_enumeration_for :status, with: Status, create_helpers: true
 
   def fix_links
     self.facebook_link = URI.decode(facebook_link) if facebook_link
